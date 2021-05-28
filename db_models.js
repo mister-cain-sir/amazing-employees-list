@@ -15,44 +15,18 @@ class Models {
         id: this.#primaryKey,
         name: DataTypes.STRING,
       },
-      details: {
+      employee: {
         id: this.#primaryKey,
         first_name: DataTypes.STRING,
         last_name: DataTypes.STRING,
         dob: DataTypes.DATEONLY,
         salary: DataTypes.FLOAT,
+        manager: DataTypes.STRING,
         department: {
           type: DataTypes.INTEGER,
           // allowNull: false,
           references: {
             model: "department",
-            key: "id",
-          },
-        },
-      },
-      employee: {
-        id: this.#primaryKey,
-        details: {
-          type: DataTypes.INTEGER,
-          references: {
-            model: "details",
-            key: "id",
-          },
-        },
-        reporting_manager: {
-          type: DataTypes.INTEGER,
-          references: {
-            model: "manager",
-            key: "id",
-          },
-        },
-      },
-      manager: {
-        id: this.#primaryKey,
-        manager_details: {
-          type: DataTypes.INTEGER,
-          references: {
-            model: "details",
             key: "id",
           },
         },
