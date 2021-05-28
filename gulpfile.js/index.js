@@ -27,7 +27,8 @@ exports.default = gulp.series(
   scripts.buildLocal,
   gulp.parallel(
     gulp.parallel(watchHtml, watchScripts, watchStyles),
-    server.start
+    server.start,
+    server.proxy
   )
 );
 

@@ -1,31 +1,5 @@
-import React, {useState} from 'react';
-
-const STATUS = {
-  HOVERED: 'hovered',
-  NORMAL: 'normal',
-};
-
-const Link = ({page, children}) => {
-  const [status, setStatus] = useState(STATUS.NORMAL);
-
-  const onMouseEnter = () => {
-    setStatus(STATUS.HOVERED);
-  };
-
-  const onMouseLeave = () => {
-    setStatus(STATUS.NORMAL);
-  };
-
-  return (
-    <a
-      className={status}
-      href={page || '#'}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
-      {children}
-    </a>
-  );
-};
-
-export default Link;
+import React from 'react';
+import ReactDom from 'react-dom';
+import {App} from "./app";
+import "../styles/app.scss";
+ReactDom.render(<App/>,document.getElementById("main-wrapper"));
