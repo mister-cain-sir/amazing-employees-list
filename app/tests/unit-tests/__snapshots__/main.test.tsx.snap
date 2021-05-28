@@ -2,6 +2,113 @@
 
 exports[`App matches snapshot 1`] = `
 <div>
-  WORKS!!!
+  <div
+    className="fixed-top"
+  >
+    <div
+      className="collapse"
+      id="navbarToggleExternalContent"
+    >
+      <div
+        className="bg-dark p-4"
+      >
+        <h5
+          className="text-white h4"
+        >
+          Collapsed content
+        </h5>
+        <span
+          className="text-muted"
+        >
+          Toggleable via the navbar brand.
+        </span>
+      </div>
+    </div>
+    <nav
+      className="navbar navbar-dark bg-dark"
+    >
+      <button
+        aria-controls="navbarToggleExternalContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        className="navbar-toggler"
+        data-target="#navbarToggleExternalContent"
+        data-toggle="collapse"
+        type="button"
+      >
+        <span
+          className="navbar-toggler-icon"
+        />
+      </button>
+    </nav>
+  </div>
+  <table
+    className="table table-striped"
+  >
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Age
+        </th>
+        <th>
+          Date Of Birth
+        </th>
+        <th>
+          Reporting Manager
+        </th>
+        <th>
+          Department
+        </th>
+        <th>
+          Salary
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          a
+        </td>
+        <td>
+          23
+        </td>
+        <td>
+          12/01/1987
+        </td>
+        <td>
+          asdasd asfasfd
+        </td>
+        <td>
+          aseasdaf
+        </td>
+        <td>
+          234234234
+        </td>
+      </tr>
+      <tr>
+        <td>
+          b
+        </td>
+        <td>
+          25
+        </td>
+        <td>
+          12/06/1977
+        </td>
+        <td>
+          klhmhg toirhjrt
+        </td>
+        <td>
+          oyptjns
+        </td>
+        <td>
+          98876476585
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 `;
