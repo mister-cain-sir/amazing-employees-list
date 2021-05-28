@@ -1,0 +1,10 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": "3306",
+    "dialect": "mysql",
+    "username": "root",
+    "password": "password",
+    "database_name": "amazing_employees_list"
+  }
+}
