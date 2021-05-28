@@ -46,12 +46,6 @@ class DB {
     const Department = this.#connector.define("department", models.department, {
       tableName: "department",
     });
-    const Details = this.#connector.define("details", models.details, {
-      tableName: "details",
-    });
-    const Manager = this.#connector.define("manager", models.employee, {
-      tableName: "manager",
-    });
     const Employee = this.#connector.define("employee", models.employee, {
       tableName: "employee",
     });
@@ -62,6 +56,13 @@ class DB {
   }
   disconnect() {
     return this.#connector.close();
+  }
+  async _createOrFind(modelName, value) {
+    const set = await this.#connector.models[modelName].findOrCreate({
+      where: value,
+      defaults: value,
+    });
+    return JSON.parse(JSON.stringify(set, null, 2));
   }
   async _create(modelName, value) {
     const set = await this.#connector.models[modelName].create(value);
