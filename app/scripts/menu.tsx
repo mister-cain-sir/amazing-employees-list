@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {MenuItem} from "./menu-item";
 import {Notification} from "./notification";
-const axios = require('axios');
+import axios from "axios";
+import {Network} from "./network";
+
+let net=new Network();
 
 export const Menu=()=>{
   const [uploadState,setUploadState]=useState({
@@ -20,14 +23,7 @@ export const Menu=()=>{
         description:"Data Upload in progress"
       }
     });
-    let formData = new FormData();
-    formData.append("dataupload", e.target.files[0]);
-    axios.post("/upload-data",formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-    .then(function (response) {
+    net.uploadFile(e.target.files[0]).then(function (response) {
       if(response.data.status && response.data.message=="File is uploaded")
         setUploadState({
           status:"uploadComplete",
@@ -57,7 +53,7 @@ export const Menu=()=>{
         description:"Synchronizing database"
       }
     });
-    axios.delete("/api/json/reset").then((response)=>{
+    net.resetAllData().then((response)=>{
       if(response.data.message=="Database cleared")
         setResetState({
           status:"dataCleared",
