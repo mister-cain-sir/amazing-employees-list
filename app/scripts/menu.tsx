@@ -4,16 +4,22 @@ import {Notification} from "./notification";
 const axios = require('axios');
 
 export const Menu=()=>{
-  const [menuState,setMenuState]=useState({
-    reset:{
-      status:"ready",
-      notification:{}
-    }
+  const [uploadState,setUploadState]=useState({
+    status:"ready",
+    notification:{}
   });
-  const [resetState,setResetState]=useState("ready");
-  const [notificationContent,setNotificationContent]=useState({});
-  useEffect(()=>{});
+  const [resetState,setResetState]=useState({
+    status:"ready",
+    notification:{}
+  });
   function uploadHandler(e){
+    setUploadState({
+      status:"uploadInProgress",
+      notification:{
+        heading:"Requesting Dataset Change",
+        description:"Data Upload in progress"
+      }
+    });
     let formData = new FormData();
     formData.append("dataupload", e.target.files[0]);
     axios.post("/upload-data",formData, {
@@ -23,41 +29,55 @@ export const Menu=()=>{
     })
     .then(function (response) {
       if(response.data.status && response.data.message=="File is uploaded")
-        console.log("DATA UPLOADED");
-        
+        setUploadState({
+          status:"uploadComplete",
+          notification:{
+            heading:"Dataset Change",
+            description:"Data Upload complete"
+          }
+        });
+      else
+        setUploadState({
+          status:"uploadError",
+          notification:{
+            heading:"Dataset Error",
+            description:"Something went wrong"
+          }
+        });
     })
     .catch(function (error) {
       console.log(error);
     });
   }
   function resetData(){
-    setMenuState({
-      reset:{
-        status:"waitingResponseFromServer",
-        notification:{
-          heading:"Requesting Dataset Change",
-          description:"Synchronizing database"
-        }
+    setResetState({
+      status:"waitingResponseFromServer",
+      notification:{
+        heading:"Requesting Dataset Change",
+        description:"Synchronizing database"
       }
     });
     axios.delete("/api/json/reset").then((response)=>{
-      console.log(response);
-      // TODO: Handle error
-      setMenuState({
-        reset:{
+      if(response.data.message=="Database cleared")
+        setResetState({
           status:"dataCleared",
           notification:{
             heading:"Dataset Change",
             description:"Database has been emptied"
           }
-        }
-      });
-      window.setTimeout(()=>{
-        setMenuState({
-          reset:{
-            status:"ready",
-            notification:{}
+        });
+      else
+        setResetState({
+          status:"dataClearError",
+          notification:{
+            heading:"Dataset Error",
+            description:"Something went wrong"
           }
+        });
+      window.setTimeout(()=>{
+        setResetState({
+          status:"ready",
+          notification:{}
         });
       },3000);
     });
@@ -86,6 +106,7 @@ export const Menu=()=>{
                     <div className="custom-file">
                       <input type="file" className="custom-file-input" id="inputGroupFile02" accept=".csv" multiple={false} onInput={(e)=>uploadHandler(e)}/>
                       <label className="custom-file-label" htmlFor="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                      <Notification content={uploadState.notification}/>
                     </div>
                   </div>
                 </div>
@@ -95,8 +116,8 @@ export const Menu=()=>{
                       <h5 className="card-title">Data Removal Warning!!!</h5>
                       <p className="card-text">All data will be deleted. Press Confirm to proceed</p>
                       <div>
-                        <button type="button" className={(menuState.reset.status=="waitingResponseFromServer" || menuState.reset.status=="dataCleared")?"btn btn-danger disabled":"btn btn-danger"} onClick={()=>resetData()}>Confirm</button>
-                        <Notification content={menuState.reset.notification}/>
+                        <button type="button" className={(resetState.status=="waitingResponseFromServer" || resetState.status=="dataCleared")?"btn btn-danger disabled":"btn btn-danger"} onClick={()=>resetData()}>Confirm</button>
+                        <Notification content={resetState.notification}/>
                       </div>
                     </div>
                   </div>
