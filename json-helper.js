@@ -13,6 +13,10 @@ class JSONHelper {
         "manager",
         "department",
       ],
+      order: [
+        ["first_name", "asc"],
+        ["last_name", "asc"],
+      ],
     };
     if (conf != undefined) {
       if (conf.conditionals != undefined) config.where = conf.conditionals;
