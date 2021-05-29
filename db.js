@@ -40,6 +40,13 @@ class DB {
     );
     return this.defineModels();
   }
+  async dropDatabase() {
+    await this.#connector.query(
+      "DROP DATABASE " + config.database.database_name + ";"
+    );
+    await this.disconnect();
+    await this.init();
+  }
   async defineModels() {
     let models = new Models(this.#connector);
     models = models.getModels();
