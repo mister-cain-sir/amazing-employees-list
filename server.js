@@ -62,6 +62,15 @@ app.post("/upload-data", async (req, res) => {
     res.status(500).send(err);
   }
 });
+app.delete("/api/json/reset", (req, res) => {
+  db.dropDatabase().then(() => {
+    res.send({
+      status: true,
+      message: "Database cleared",
+      data: {},
+    });
+  });
+});
 db.init().then(() => {
   app.listen(port, () => {});
 });
