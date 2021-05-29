@@ -21,12 +21,16 @@ function watchStyles() {
   );
 }
 
+function watchServerFiles() {
+  gulp.watch("*.js", server.proxy);
+}
+
 exports.default = gulp.series(
   copy.html,
   tester.test,
   scripts.buildLocal,
   gulp.parallel(
-    gulp.parallel(watchHtml, watchScripts, watchStyles),
+    gulp.parallel(watchHtml, watchScripts, watchStyles, watchServerFiles),
     server.start,
     server.proxy
   )

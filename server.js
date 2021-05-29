@@ -4,6 +4,8 @@ const DB = require("./db"),
   bodyParser = require("body-parser"),
   morgan = require("morgan"),
   parse = require("csv-parse/lib/sync");
+const JSONHelper = require("./json-helper");
+
 (app = express()), (port = 80);
 
 let isLocal =
@@ -11,6 +13,7 @@ let isLocal =
     ? true
     : false;
 let db = new DB();
+const helper = new JSONHelper(db);
 app.use(
   fileUpload({
     createParentPath: true,
@@ -19,6 +22,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.set("etag", false);
 app.use(
   "/",
   express.static(+isLocal ? __dirname + "/public" : __dirname + "/dist")
@@ -61,6 +65,11 @@ app.post("/upload-data", async (req, res) => {
   } catch (err) {
     res.status(500).send(err);
   }
+});
+app.get("/api/json/", (req, res) => {
+  helper.fetchEmployeeRecord().then((emp) => {
+    res.send(JSON.stringify(emp));
+  });
 });
 app.delete("/api/json/reset", (req, res) => {
   db.dropDatabase().then(() => {
