@@ -40,6 +40,13 @@ class DB {
     );
     return this.defineModels();
   }
+  async dropDatabase() {
+    await this.#connector.query(
+      "DROP DATABASE " + config.database.database_name + ";"
+    );
+    await this.disconnect();
+    await this.init();
+  }
   async defineModels() {
     let models = new Models(this.#connector);
     models = models.getModels();
@@ -71,16 +78,8 @@ class DB {
   async _delete(modelName, conditionals) {
     return this.#connector.models[modelName].destroy(conditionals);
   }
-  _query(modelName, columns, conditionals) {
-    if (typeof conditionals == "undefined")
-      return this.#connector.models[modelName].findAll({
-        attributes: columns,
-      });
-    else
-      return this.#connector.models[modelName].findAll({
-        attributes: columns,
-        where: conditionals,
-      });
+  _query(modelName, config) {
+    return this.#connector.models[modelName].findAll(config);
   }
 }
 

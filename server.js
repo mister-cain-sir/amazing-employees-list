@@ -4,6 +4,8 @@ const DB = require("./db"),
   bodyParser = require("body-parser"),
   morgan = require("morgan"),
   parse = require("csv-parse/lib/sync");
+const JSONHelper = require("./json-helper");
+
 (app = express()), (port = 80);
 
 let isLocal =
@@ -11,6 +13,7 @@ let isLocal =
     ? true
     : false;
 let db = new DB();
+const helper = new JSONHelper(db);
 app.use(
   fileUpload({
     createParentPath: true,
@@ -19,6 +22,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.set("etag", false);
 app.use(
   "/",
   express.static(+isLocal ? __dirname + "/public" : __dirname + "/dist")
@@ -32,7 +36,7 @@ app.post("/upload-data", async (req, res) => {
       });
     } else {
       //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
-      let file = req.files.avatar;
+      let file = req.files.dataupload;
 
       //Use the mv() method to place the file in upload directory (i.e. "uploads")
       let parsedData = parse(file.data.toString("utf8"), {
@@ -61,6 +65,20 @@ app.post("/upload-data", async (req, res) => {
   } catch (err) {
     res.status(500).send(err);
   }
+});
+app.get("/api/json/", (req, res) => {
+  helper.fetchEmployeeRecord().then((emp) => {
+    res.send(JSON.stringify(emp));
+  });
+});
+app.delete("/api/json/reset", (req, res) => {
+  db.dropDatabase().then(() => {
+    res.send({
+      status: true,
+      message: "Database cleared",
+      data: {},
+    });
+  });
 });
 db.init().then(() => {
   app.listen(port, () => {});

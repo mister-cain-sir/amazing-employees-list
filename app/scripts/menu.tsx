@@ -1,15 +1,82 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {MenuItem} from "./menu-item";
+import {Notification} from "./notification";
+import axios from "axios";
+import {Network} from "./network";
 
+let net=new Network();
 
 export const Menu=()=>{
+  const [uploadState,setUploadState]=useState({
+    status:"ready",
+    notification:{}
+  });
+  const [resetState,setResetState]=useState({
+    status:"ready",
+    notification:{}
+  });
   function uploadHandler(e){
-    console.log(e.target.files);
-    var fr=new FileReader();
-    fr.onload=function(){
-      
-    }
-    fr.readAsText(e.target.files[0]);
+    setUploadState({
+      status:"uploadInProgress",
+      notification:{
+        heading:"Requesting Dataset Change",
+        description:"Data Upload in progress"
+      }
+    });
+    net.uploadFile(e.target.files[0]).then(function (response) {
+      if(response.data.status && response.data.message=="File is uploaded")
+        setUploadState({
+          status:"uploadComplete",
+          notification:{
+            heading:"Dataset Change",
+            description:"Data Upload complete"
+          }
+        });
+      else
+        setUploadState({
+          status:"uploadError",
+          notification:{
+            heading:"Dataset Error",
+            description:"Something went wrong"
+          }
+        });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+  function resetData(){
+    setResetState({
+      status:"waitingResponseFromServer",
+      notification:{
+        heading:"Requesting Dataset Change",
+        description:"Synchronizing database"
+      }
+    });
+    net.resetAllData().then((response)=>{
+      if(response.data.message=="Database cleared")
+        setResetState({
+          status:"dataCleared",
+          notification:{
+            heading:"Dataset Change",
+            description:"Database has been emptied"
+          }
+        });
+      else
+        setResetState({
+          status:"dataClearError",
+          notification:{
+            heading:"Dataset Error",
+            description:"Something went wrong"
+          }
+        });
+      window.setTimeout(()=>{
+        setResetState({
+          status:"ready",
+          notification:{}
+        });
+      },3000);
+    });
   }
   return (
     <div className="sticky-top">
@@ -18,9 +85,9 @@ export const Menu=()=>{
           <div className="row">
             <div className="col-3">
               <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a className="nav-link active text-white bg-secondary" id="v-pills-download-tab" data-toggle="pill" href="#v-pills-download" role="tab" aria-controls="v-pills-download" aria-selected="true">Download</a>
+                <a className="nav-link active text-white" id="v-pills-download-tab" data-toggle="pill" href="#v-pills-download" role="tab" aria-controls="v-pills-download" aria-selected="true">Download</a>
                 <a className="nav-link text-white" id="v-pills-upload-tab" data-toggle="pill" href="#v-pills-upload" role="tab" aria-controls="v-pills-upload" aria-selected="false">Upload</a>
-                <a className="nav-link text-white">Reset</a>
+                <a className="nav-link text-white" id="v-pills-reset-tab" data-toggle="pill" href="#v-pills-reset" role="tab" aria-controls="v-pills-reset" aria-selected="false">Reset</a>
               </div>
             </div>
             <div className="col-9">
@@ -35,6 +102,19 @@ export const Menu=()=>{
                     <div className="custom-file">
                       <input type="file" className="custom-file-input" id="inputGroupFile02" accept=".csv" multiple={false} onInput={(e)=>uploadHandler(e)}/>
                       <label className="custom-file-label" htmlFor="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                      <Notification content={uploadState.notification}/>
+                    </div>
+                  </div>
+                </div>
+                <div className="tab-pane fade" id="v-pills-reset" role="tabpanel" aria-labelledby="v-pills-reset-tab">
+                  <div className="card bg-gradient-warning ">
+                    <div className="card-body">
+                      <h5 className="card-title">Data Removal Warning!!!</h5>
+                      <p className="card-text">All data will be deleted. Press Confirm to proceed</p>
+                      <div>
+                        <button type="button" className={(resetState.status=="waitingResponseFromServer" || resetState.status=="dataCleared")?"btn btn-danger disabled":"btn btn-danger"} onClick={()=>resetData()}>Confirm</button>
+                        <Notification content={resetState.notification}/>
+                      </div>
                     </div>
                   </div>
                 </div>

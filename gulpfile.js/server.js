@@ -1,25 +1,34 @@
 const gulp = require("gulp"),
   bs = require("browser-sync").create(),
   { exec } = require("child_process");
+
+let process = null,
+  prevcb = null;
 class Server {
-  constructor() {}
+  constructor() {
+    this.process = null;
+  }
   start(cb) {
     bs.init({
       proxy: "localhost",
     });
     cb();
   }
-  proxy() {
-    exec("node server.js --local", (error, stdout, stderr) => {
-      if (error) {
-        console.log(`error: ${error.message}`);
-        return;
+  proxy(cb) {
+    if (process != null) {
+      console.log("Restarting Server");
+      process.kill("SIGTERM");
+      process = null;
+      prevcb = cb;
+    }
+    process = exec("node server.js --local");
+    process.stdout.on("data", function (res) {
+      console.log(res);
+    });
+    process.on("close", (code) => {
+      if (prevcb != null) {
+        prevcb();
       }
-      if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-      }
-      cb();
     });
   }
   reload(cb) {

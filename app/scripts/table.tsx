@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {TableRow} from "./table-row";
+import dayjs from 'dayjs';
 
 export const Table=(props)=>{
   const [data,setData]=useState(props.data);
+  useEffect(()=>{
+    setData(props.data)
+  },[props.data]);
+  
   return (
     <table className="table table-striped">
       <thead>
@@ -17,7 +22,7 @@ export const Table=(props)=>{
       </thead>
       <tbody>
         {data.map((row,index)=>
-          <TableRow name={row.name} age={row.age} dob={row.dob} repMan={row.reporting_manager} department={row.department} salary={row.salary} key={index}/>
+          <TableRow name={row.first_name+" "+row.last_name} age={dayjs().diff(row.dob,"year")} dob={dayjs(row.dob).format('DD/MM/YYYY')} repMan={row.manager} department={row.department} salary={row.salary} key={index}/>
         )}
       </tbody>
     </table>
