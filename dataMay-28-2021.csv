@@ -1,0 +1,101 @@
+first_name,last_name,dob,salary,manager,department
+Paul,Harper,"Fri, 20 Oct 1978 09:33:39 -0700",60250459,Mari Noel,Human Resources
+Chester,Fitzgerald,"Mon, 21 May 1979 15:39:05 -0700",21135180,Yuri Travis,Payroll
+Kyle,Blanchard,"Mon, 15 Aug 1983 20:42:23 -0700",42009000,Zelda Miller,Tech Support
+Sheila,Calhoun,"Fri, 17 Dec 1971 03:57:14 -0800",94260180,Wing William,Quality Assurance
+Laura,Pratt,"Sun, 09 May 1982 19:41:01 -0700",63310981,Deacon Rose,Public Relations
+Travis,Mueller,"Tue, 06 Jun 1989 03:41:32 -0700",42794577,Danielle Underwood,Customer Relations
+Kiara,Lyons,"Fri, 14 Dec 1973 20:57:09 -0800",53187227,Dylan Cotton,Research and Development
+Mia,Russell,"Tue, 12 Feb 1974 19:04:50 -0700",86315672,Fredericka Barry,Quality Assurance
+Maisie,Cantu,"Sun, 17 Jun 1990 22:45:31 -0700",83189466,Aiko Bernard,Accounting
+Deanna,Atkins,"Sat, 14 Feb 1970 12:16:50 -0800",37656295,Roanna Valenzuela,Research and Development
+Raphael,Farmer,"Thu, 09 Oct 1975 07:10:59 -0700",10036730,Daniel Oneil,Sales and Marketing
+Jacob,Dawson,"Fri, 21 Feb 1986 19:38:12 -0800",53000942,Linda Hamilton,Accounting
+Jameson,Holland,"Thu, 24 Jun 1982 22:26:32 -0700",67399236,Florence Kline,Legal Department
+Charissa,Johns,"Sat, 25 Jun 1977 20:40:14 -0700",42566974,Dominic Miles,Tech Support
+Hasad,Roth,"Sat, 23 Jun 1990 08:54:13 -0700",84862117,Audra Good,Quality Assurance
+Inez,Rivera,"Sun, 06 Dec 1970 04:03:54 -0800",68536381,Hop Mitchell,Quality Assurance
+Fatima,Fuentes,"Sat, 26 Feb 1983 00:12:10 -0800",76275865,Blake Prince,Sales and Marketing
+Aurelia,Mason,"Thu, 15 Oct 1981 08:42:51 -0700",64241253,Libby Silva,Human Resources
+Aretha,Eaton,"Thu, 01 Jun 1972 10:07:06 -0700",47465855,Kirby Matthews,Asset Management
+Hilda,Mejia,"Sat, 05 Dec 1970 03:20:42 -0800",84811749,Bethany Pate,Tech Support
+Melvin,Dale,"Mon, 05 Jan 1970 18:43:53 -0800",67243891,Quamar Reeves,Sales and Marketing
+Leilani,Morse,"Mon, 17 Aug 1981 10:13:36 -0700",54797891,Eric Hood,Quality Assurance
+Solomon,Buchanan,"Wed, 06 Jul 1983 15:31:01 -0700",77404442,Giselle Oneil,Legal Department
+Salvador,Bean,"Fri, 10 Sep 1976 18:55:26 -0700",60004353,Lionel Abbott,Customer Service
+Anthony,Gilliam,"Tue, 15 Apr 1980 12:28:34 -0800",43159424,Stacey Morris,Legal Department
+Ulysses,Pruitt,"Wed, 02 Nov 1988 08:41:01 -0800",63056944,Dalton Cox,Customer Relations
+Lillian,Mays,"Thu, 16 Nov 1978 09:14:50 -0800",77333088,Demetrius Kane,Customer Service
+Lamar,Howe,"Sun, 18 Apr 1982 14:40:36 -0800",32269856,Lee Kerr,Advertising
+Kaye,Whitley,"Sun, 14 Jun 1970 19:19:21 -0700",93313268,Janna Whitley,Human Resources
+Rinah,Bond,"Sat, 12 Aug 1989 22:59:56 -0700",66670291,Sylvester Joyner,Quality Assurance
+Miranda,Morgan,"Mon, 12 Jun 1978 20:26:22 -0700",29201155,Yoshi Hammond,Advertising
+Ivan,Bartlett,"Sun, 22 May 1983 23:22:16 -0700",41815449,Maite Yang,Research and Development
+Sopoline,Shannon,"Tue, 03 Aug 1971 14:58:26 -0700",7506911,Kirk Serrano,Public Relations
+Ishmael,Caldwell,"Sun, 30 Jan 1983 13:16:33 -0800",81919719,Xanthus Green,Customer Relations
+Kyle,Knox,"Fri, 07 Sep 1984 13:22:13 -0700",34599912,Brett Cochran,Accounting
+Ava,Tran,"Sun, 16 Nov 1980 11:26:54 -0800",81247577,Reuben Dillard,Quality Assurance
+Troy,House,"Wed, 24 Nov 1982 23:14:19 -0800",33738151,Steel Foley,Customer Service
+Walter,Moss,"Thu, 26 Jun 1980 13:44:40 -0700",68559593,Fredericka Calhoun,Quality Assurance
+Gray,Contreras,"Thu, 18 Feb 1971 04:13:46 -0800",28004769,Britanney Wall,Payroll
+Damian,Tyson,"Tue, 12 Apr 1977 14:14:52 -0800",11267417,Henry Larson,Research and Development
+Jane,York,"Tue, 21 Apr 1987 21:03:07 -0700",73197811,Jillian Cross,Customer Relations
+Marsden,Russell,"Tue, 18 Dec 1990 20:09:30 -0800",88517876,Maite Quinn,Sales and Marketing
+Cheyenne,Vincent,"Tue, 17 Jul 1990 11:53:23 -0700",73410767,Sebastian Stark,Tech Support
+Cleo,West,"Tue, 01 May 1979 12:58:30 -0700",87301233,Ifeoma Wooten,Human Resources
+Lionel,Roman,"Sun, 29 Jan 1984 02:56:32 -0800",46170543,Breanna Harrington,Advertising
+Zorita,Pitts,"Sun, 26 Jun 1983 23:54:02 -0700",40858842,Orlando Hernandez,Legal Department
+Sean,Merrill,"Mon, 04 Oct 1982 23:33:58 -0700",48821483,Tasha Ford,Quality Assurance
+Eaton,Mcdaniel,"Sun, 26 Jan 1986 02:28:51 -0800",71532252,Colt Hall,Media Relations
+Quemby,Robles,"Sun, 15 Aug 1982 19:46:35 -0700",91187105,Penelope Neal,Human Resources
+Leah,Drake,"Sun, 10 Apr 1977 20:32:55 -0800",55664949,Raja Gillespie,Asset Management
+Darius,Knox,"Sun, 21 Jan 1973 16:00:45 -0800",23829360,Graham Anthony,Customer Service
+Patience,Schroeder,"Sat, 10 Sep 1977 20:23:18 -0700",51975148,Basil Davis,Payroll
+Gillian,Ware,"Sun, 19 Dec 1976 02:40:25 -0800",51911573,Quentin Cooke,Accounting
+Irma,Payne,"Wed, 21 Dec 1988 15:25:56 -0800",54014322,James Ortega,Legal Department
+Camden,Baker,"Sun, 18 Feb 1973 00:05:58 -0800",87488542,Gloria Mcconnell,Customer Service
+Uriah,Lyons,"Wed, 08 May 1985 20:39:20 -0700",62374404,Reese Davenport,Quality Assurance
+Aladdin,Ratliff,"Tue, 06 Mar 1973 23:09:19 -0800",12548586,Chelsea Peck,Customer Relations
+Constance,Owen,"Thu, 08 Apr 1976 01:00:28 -0800",32452942,Anthony Pennington,Public Relations
+Sydney,Mendez,"Thu, 04 Sep 1980 21:04:21 -0700",94201899,Nyssa Snider,Legal Department
+Kathleen,Maddox,"Wed, 22 Feb 1989 00:09:32 -0800",92382389,Laurel Sharp,Asset Management
+Quemby,Wells,"Fri, 28 Aug 1987 00:26:43 -0700",64496617,Nina Macdonald,Media Relations
+Aileen,Stevens,"Wed, 24 Dec 1986 23:55:34 -0800",21900670,Blaze Winters,Accounting
+Lillian,Watson,"Thu, 01 Jul 1971 04:22:27 -0700",53464230,Devin Heath,Tech Support
+Hanna,Mckee,"Mon, 20 Nov 1989 09:45:43 -0800",14010547,Dai Guzman,Asset Management
+Dara,Ryan,"Mon, 29 Oct 1979 09:11:07 -0800",25768115,Britanney Rowland,Research and Development
+Emma,Wooten,"Mon, 29 Nov 1971 21:44:49 -0800",64746514,Benedict Justice,Asset Management
+Wynne,Rice,"Fri, 14 Aug 1970 19:53:41 -0700",61144906,Hop Cash,Customer Relations
+Yuri,Gates,"Sun, 06 Nov 1983 23:18:07 -0800",77187592,Signe Frederick,Advertising
+Samson,Le,"Mon, 24 Jul 1978 10:52:25 -0700",84857398,Scott Woods,Payroll
+Jonah,Rivas,"Sat, 15 Jan 1983 17:35:47 -0800",81851235,Seth Harrington,Research and Development
+Medge,Barnes,"Fri, 13 Jul 1990 04:19:50 -0700",51270766,Hashim Barlow,Advertising
+Simone,Hubbard,"Thu, 14 Apr 1988 18:03:18 -0700",55774781,Casey Ford,Asset Management
+Jemima,Conner,"Sat, 29 Jun 1985 22:37:43 -0700",52517927,Matthew Stark,Customer Service
+Paki,Maddox,"Fri, 29 Aug 1980 03:24:11 -0700",93580197,Montana Snyder,Legal Department
+Katell,Cantu,"Thu, 04 Dec 1980 20:11:28 -0800",34054134,Abel Washington,Advertising
+Paki,Burke,"Fri, 19 Nov 1971 18:58:53 -0800",5912480,Tallulah Coleman,Sales and Marketing
+Chase,Goff,"Thu, 28 Dec 1978 03:02:20 -0800",89482461,Donna Ray,Media Relations
+Hollee,Oconnor,"Mon, 20 Nov 1978 15:46:53 -0800",10046460,Maryam Kinney,Tech Support
+Adrian,Vasquez,"Sun, 03 Feb 1974 05:51:50 -0700",46013198,Martina Kim,Payroll
+Keaton,Hobbs,"Tue, 03 Jul 1984 05:15:14 -0700",65383547,Abigail Clayton,Advertising
+Jason,Romero,"Mon, 07 Aug 1978 07:09:12 -0700",39031563,Wylie Booker,Advertising
+Blaze,Patrick,"Thu, 12 Jun 1986 08:34:08 -0700",23173091,Jordan Christensen,Advertising
+Cade,Haney,"Sat, 24 Jan 1970 13:53:15 -0800",27104020,Hadassah Jensen,Human Resources
+Maggy,Richard,"Sat, 07 Jun 1980 06:55:55 -0700",42241299,Dominique Mitchell,Legal Department
+Leonard,Cunningham,"Mon, 09 Nov 1981 08:36:15 -0800",69005850,Medge Owens,Payroll
+Lucas,Mcmahon,"Mon, 12 Aug 1974 02:53:23 -0700",4266288,Kylan Terrell,Asset Management
+Whitney,Pace,"Wed, 24 Feb 1982 19:03:16 -0800",89752975,Keelie Rush,Media Relations
+Craig,Little,"Tue, 27 Oct 1981 20:55:07 -0800",52307796,Camilla Cline,Advertising
+Travis,Brooks,"Sun, 11 Mar 1979 18:08:59 -0800",34025822,Aladdin Barnes,Sales and Marketing
+Rogan,Spence,"Mon, 01 Feb 1988 10:31:28 -0800",61290025,Cecilia Bradley,Tech Support
+Sebastian,Gilmore,"Tue, 04 Sep 1990 22:24:11 -0700",91777652,Aaron Cantrell,Public Relations
+Lani,Bentley,"Thu, 06 Jun 1985 11:38:57 -0700",17620136,Flavia Curtis,Quality Assurance
+Indigo,Battle,"Sat, 01 Aug 1987 10:12:41 -0700",80183787,Chaney Houston,Research and Development
+Chaim,Frank,"Mon, 01 Jun 1981 17:36:41 -0700",43209148,Jamalia Ford,Human Resources
+Jacob,Roberts,"Tue, 18 Oct 1977 23:42:56 -0700",53393293,Cain Norton,Asset Management
+Meghan,Benton,"Wed, 07 Sep 1977 07:30:03 -0700",64123199,Virginia Hurst,Legal Department
+Holmes,Espinoza,"Tue, 19 Aug 1975 17:41:14 -0700",89082795,Jordan Duke,Public Relations
+Colleen,Savage,"Wed, 13 Sep 1989 17:43:48 -0700",26239052,Ella Steele,Accounting
+Rafael,Merrill,"Wed, 22 Aug 1984 03:48:44 -0700",65321396,Allistair Hayes,Public Relations
+Vance,Bright,"Mon, 11 Jan 1971 20:31:01 -0800",51322673,Reese Mccoy,Human Resources

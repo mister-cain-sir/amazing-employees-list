@@ -19,6 +19,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.set("etag", false);
 app.use(
   "/",
   express.static(+isLocal ? __dirname + "/public" : __dirname + "/dist")
@@ -61,6 +62,25 @@ app.post("/upload-data", async (req, res) => {
   } catch (err) {
     res.status(500).send(err);
   }
+});
+app.get("/api/json", (req, res) => {
+  let rec = [];
+  db._query("employee", {
+    attributes: [
+      "first_name",
+      "last_name",
+      "dob",
+      "salary",
+      "manager",
+      "department",
+    ],
+    limit: 10,
+  }).then((records) => {
+    records.map((record) => {
+      rec.push();
+    });
+  });
+  res.send("APAI");
 });
 app.delete("/api/json/reset", (req, res) => {
   db.dropDatabase().then(() => {
