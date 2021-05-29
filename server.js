@@ -32,7 +32,7 @@ app.post("/upload-data", async (req, res) => {
       });
     } else {
       //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
-      let file = req.files.avatar;
+      let file = req.files.dataupload;
 
       //Use the mv() method to place the file in upload directory (i.e. "uploads")
       let parsedData = parse(file.data.toString("utf8"), {
