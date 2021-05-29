@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import {MenuItem} from "./menu-item";
-const axios = require('axios'),
-  $=require("jquery");
+import {Notification} from "./notification";
+const axios = require('axios');
 
 export const Menu=()=>{
-  const [resetState,setResetState]=useState("ready");
-  useEffect(()=>{
-    if($('.toast').length>0){
-      $('.toast').toast('show',{
-        animation:true
-      })
+  const [menuState,setMenuState]=useState({
+    reset:{
+      status:"ready",
+      notification:{}
     }
   });
+  const [resetState,setResetState]=useState("ready");
+  const [notificationContent,setNotificationContent]=useState({});
+  useEffect(()=>{});
   function uploadHandler(e){
     let formData = new FormData();
     formData.append("dataupload", e.target.files[0]);
@@ -30,55 +31,37 @@ export const Menu=()=>{
     });
   }
   function resetData(){
-    setResetState("waitingResponseFromServer");
+    setMenuState({
+      reset:{
+        status:"waitingResponseFromServer",
+        notification:{
+          heading:"Requesting Dataset Change",
+          description:"Synchronizing database"
+        }
+      }
+    });
     axios.delete("/api/json/reset").then((response)=>{
       console.log(response);
       // TODO: Handle error
-      setResetState("dataCleared");
+      setMenuState({
+        reset:{
+          status:"dataCleared",
+          notification:{
+            heading:"Dataset Change",
+            description:"Database has been emptied"
+          }
+        }
+      });
       window.setTimeout(()=>{
-        setResetState("ready");
+        setMenuState({
+          reset:{
+            status:"ready",
+            notification:{}
+          }
+        });
       },3000);
     });
   }
-  let resetConfirmationButton=(resetState=="dataCleared")?(
-      <div>
-        <button type="button" className="btn btn-danger disabled" onClick={()=>resetData()}>Confirm</button>
-        <div className="position-fixed bottom-0 right-0 p-3" style={{zIndex: 5, right: 0, bottom: 0}}>
-          <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-            <div className="toast-header">
-              <strong className="mr-3">Dataset Change</strong>
-              <small>now</small>
-              <button type="button" className="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="toast-body">
-              Database has been emptied.
-            </div>
-          </div>
-        </div>
-      </div>
-    ):(resetState=="waitingResponseFromServer")?(
-      <div>
-        <button type="button" className="btn btn-danger disabled" onClick={()=>resetData()}>Confirm</button>
-        <div className="position-fixed bottom-0 right-0 p-3" style={{zIndex: 5, right: 0, bottom: 0}}>
-          <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-            <div className="toast-header">
-              <strong className="mr-3">Requesting Dataset Change</strong>
-              <small>now</small>
-              <button type="button" className="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="toast-body">
-              Synchronizing database
-            </div>
-          </div>
-        </div>
-      </div>
-    ):(
-      <button type="button" className="btn btn-danger" onClick={()=>resetData()}>Confirm</button>
-    );
   return (
     <div className="sticky-top">
       <div className="collapse" id="navbarToggleExternalContent">
@@ -111,7 +94,10 @@ export const Menu=()=>{
                     <div className="card-body">
                       <h5 className="card-title">Data Removal Warning!!!</h5>
                       <p className="card-text">All data will be deleted. Press Confirm to proceed</p>
-                      {resetConfirmationButton}
+                      <div>
+                        <button type="button" className={(menuState.reset.status=="waitingResponseFromServer" || menuState.reset.status=="dataCleared")?"btn btn-danger disabled":"btn btn-danger"} onClick={()=>resetData()}>Confirm</button>
+                        <Notification content={menuState.reset.notification}/>
+                      </div>
                     </div>
                   </div>
                 </div>
