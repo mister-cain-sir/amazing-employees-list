@@ -1,15 +1,29 @@
 import React, { useState } from "react";
 import {MenuItem} from "./menu-item";
-
+const axios = require('axios');
 
 export const Menu=()=>{
   function uploadHandler(e){
-    console.log(e.target.files);
-    var fr=new FileReader();
-    fr.onload=function(){
-      
-    }
-    fr.readAsText(e.target.files[0]);
+    let formData = new FormData();
+    formData.append("dataupload", e.target.files[0]);
+    axios.post("/upload-data",formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(function (response) {
+      if(response.data.status && response.data.message=="File is uploaded")
+        console.log("DATA UPLOADED");
+        
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    // var fr=new FileReader();
+    // fr.onload=function(){
+    //   console.log(fr.result);
+    // }
+    // fr.readAsText(e.target.files[0]);
   }
   return (
     <div className="sticky-top">
