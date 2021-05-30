@@ -50,9 +50,12 @@ export const App=(props)=>{
     let csv;
     switch(downloadType){
       case "all":
-        csv = data.map(row => Object.values(row));
-        csv.unshift(Object.keys(data[0]));
-        csv=csv.join('\n');
+        network.fetchAllData().then((d)=>{
+          csv = d.rows.map(row => Object.values(row));
+          csv.unshift(Object.keys(d.rows[0]));
+          csv=csv.join('\n');
+          downloadFile(csv);
+        });
         break;
       case "current":
         break;
@@ -65,10 +68,14 @@ export const App=(props)=>{
         }
         else
           csv="name,dob,salary,manager,department";
+        downloadFile(csv);
         break;
     }
     
     
+    
+  }
+  function downloadFile(csv){
     let hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv );
     // hiddenElement.target = '_blank';
