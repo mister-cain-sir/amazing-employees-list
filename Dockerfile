@@ -8,5 +8,5 @@ RUN npm install
 
 COPY . .
 
-CMD ["node","server.js"]
+CMD ["./start.sh"]
 EXPOSE 80
