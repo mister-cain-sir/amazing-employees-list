@@ -1,3 +1,8 @@
 .data-table-wrapper {
   max-height: 85vh;
+  table {
+    th {
+      cursor: pointer;
+    }
+  }
 }

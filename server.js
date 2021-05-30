@@ -4,7 +4,8 @@ const DB = require("./db"),
   bodyParser = require("body-parser"),
   morgan = require("morgan"),
   parse = require("csv-parse/lib/sync"),
-  JSONHelper = require("./json-helper");
+  JSONHelper = require("./json-helper"),
+  dayjs = require("dayjs");
 
 let app = express(),
   port = 80;
@@ -50,6 +51,8 @@ app.post("/upload-data", async (req, res) => {
         //   name: record.department,
         // });
         // record.department = departmentRecord[0].id;
+        record.age = dayjs().diff(record.dob, "year");
+        console.log(record);
         await db._create("employee", record);
       }
       //send response

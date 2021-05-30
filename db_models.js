@@ -16,6 +16,7 @@ class Models {
         first_name: DataTypes.STRING,
         last_name: DataTypes.STRING,
         dob: DataTypes.DATEONLY,
+        age: DataTypes.INTEGER,
         salary: DataTypes.FLOAT,
         manager: DataTypes.STRING,
         department: DataTypes.STRING,

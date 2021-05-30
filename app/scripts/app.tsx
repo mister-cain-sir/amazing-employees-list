@@ -8,6 +8,7 @@ export const App=(props)=>{
   const [data,setData]=useState(props.data);
   const [currentPage,setCurrentPage]=useState(props.currentPage);
   const [recordsPerPage,setRecordsPerPage]=useState(props.recordsPerPage);
+  const [currentSort,setCurrentSort]=useState(props.currentSort);
   let tPages=parseInt(props.totalRecords/recordsPerPage);
   if(tPages*recordsPerPage<props.totalRecords)
     tPages++;
@@ -25,9 +26,18 @@ export const App=(props)=>{
       });
     }
   }
+  function updateSorting(sort){
+    setCurrentSort({
+      col:sort.currentSort,
+      order:sort.currentSortOrder
+    });
+  }
   useEffect(()=>{
     setData(props.data);
   },[props.data]);
+  useEffect(()=>{
+    setCurrentSort(props.currentSort);
+  },[props.currentSort]);
   function downloadCSV(downloadType){
     let csv;
     switch(downloadType){
@@ -60,8 +70,8 @@ export const App=(props)=>{
   return (
     <div className="row">
       <Menu download={downloadCSV} dataUpdate={updateData} setData={setData} data={data}/>
-      <Table data={data}/>
-      <Paginator currentPage={currentPage} totalPages={totalPages} displayedPages={displayedPages} dataUpdate={updateData} recordsPerPage={recordsPerPage}/>
+      <Table data={data} currentPage={currentPage} totalPages={totalPages} displayedPages={displayedPages} dataUpdate={updateData} recordsPerPage={recordsPerPage}  currentSort={currentSort} updateSort={updateSorting}/>
+      <Paginator currentPage={currentPage} totalPages={totalPages} displayedPages={displayedPages} dataUpdate={updateData} recordsPerPage={recordsPerPage}  currentSort={currentSort}/>
     </div>
   );
 }

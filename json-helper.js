@@ -9,6 +9,7 @@ class JSONHelper {
         "first_name",
         "last_name",
         "dob",
+        "age",
         "salary",
         "manager",
         "department",
