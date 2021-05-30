@@ -94,10 +94,7 @@ app.get("/api/json/list/:count?/:page?/:sortcol?/:sort?", (req, res) => {
   if (sortcol) {
     if (sortcol == "employee") {
       if (sort) {
-        conf.order = [
-          ["first_name", sort],
-          ["last_name", sort],
-        ];
+        conf.order = [["name", sort]];
       }
     } else {
       if (sort) {
@@ -107,8 +104,8 @@ app.get("/api/json/list/:count?/:page?/:sortcol?/:sort?", (req, res) => {
       }
     }
   }
-
-  helper.fetchEmployeeRecord(conf).then((emp) => {
+  conf.conditionals = req.query;
+  helper.fetchEmployeeRecord(conf, true).then((emp) => {
     res.send(JSON.stringify(emp));
   });
 });

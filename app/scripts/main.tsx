@@ -16,7 +16,14 @@ network.fetchRequestedData({
   }
 }).then((records)=>{
   ReactDom.render(<App data={records.rows} totalRecords={records.count} recordsPerPage={resultsPerPage} currentPage={currentPage} currentSort={{
-    col:"employee",
+    col:"name",
     order:"asc"
+  }} currentSearch={{
+    name:"",
+    age:"",
+    dob:"",
+    manager:"",
+    department:"",
+    salary:""
   }}/>,document.getElementById("main-wrapper"));
 });
