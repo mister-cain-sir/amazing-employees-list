@@ -3,10 +3,11 @@ const DB = require("./db"),
   fileUpload = require("express-fileupload"),
   bodyParser = require("body-parser"),
   morgan = require("morgan"),
-  parse = require("csv-parse/lib/sync");
-const JSONHelper = require("./json-helper");
+  parse = require("csv-parse/lib/sync"),
+  JSONHelper = require("./json-helper");
 
-(app = express()), (port = 80);
+let app = express(),
+  port = 80;
 
 let isLocal =
   process.argv.slice(2).length > 0 && process.argv.slice(2)[0] == "--local"
@@ -45,10 +46,10 @@ app.post("/upload-data", async (req, res) => {
       });
       for (let i = 0; i < parsedData.length; i++) {
         const record = parsedData[i];
-        let departmentRecord = await db._createOrFind("department", {
-          name: record.department,
-        });
-        record.department = departmentRecord[0].id;
+        // let departmentRecord = await db._createOrFind("department", {
+        //   name: record.department,
+        // });
+        // record.department = departmentRecord[0].id;
         await db._create("employee", record);
       }
       //send response
@@ -66,11 +67,6 @@ app.post("/upload-data", async (req, res) => {
     res.status(500).send(err);
   }
 });
-app.get("/api/json/", (req, res) => {
-  helper.fetchEmployeeRecord().then((emp) => {
-    res.send(JSON.stringify(emp));
-  });
-});
 app.delete("/api/json/reset", (req, res) => {
   db.dropDatabase().then(() => {
     res.send({
@@ -78,6 +74,39 @@ app.delete("/api/json/reset", (req, res) => {
       message: "Database cleared",
       data: {},
     });
+  });
+});
+app.get("/api/json/", (req, res) => {
+  console.log(req.params);
+  // if (req.params.limit) console.log(limit);
+  helper.fetchEmployeeRecord().then((emp) => {
+    res.send(JSON.stringify(emp));
+  });
+});
+app.get("/api/json/list/:count?/:page?/:sortcol?/:sort?", (req, res) => {
+  let { count, page, sort, sortcol } = req.params;
+  let conf = {};
+  if (count && count != "all") conf.limit = parseInt(count);
+  if (page && parseInt(page) > 1) conf.offset = parseInt(page) - 1;
+  if (sortcol) {
+    if (sortcol == "employee") {
+      if (sort) {
+        conf.order = [
+          ["first_name", sort],
+          ["last_name", sort],
+        ];
+      }
+    } else {
+      if (sort) {
+        conf.order = [[sortcol, sort]];
+      } else {
+        conf.order = [[sortcol, "asc"]];
+      }
+    }
+  }
+
+  helper.fetchEmployeeRecord(conf).then((emp) => {
+    res.send(JSON.stringify(emp));
   });
 });
 db.init().then(() => {

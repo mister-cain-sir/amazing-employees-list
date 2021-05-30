@@ -50,12 +50,10 @@ class DB {
   async defineModels() {
     let models = new Models(this.#connector);
     models = models.getModels();
-    const Department = this.#connector.define("department", models.department, {
-      tableName: "department",
-    });
     const Employee = this.#connector.define("employee", models.employee, {
       tableName: "employee",
     });
+
     return this.#connector.sync();
   }
   connect() {

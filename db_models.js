@@ -11,10 +11,6 @@ class Models {
       autoIncrement: true,
     };
     this.#models = {
-      department: {
-        id: this.#primaryKey,
-        name: DataTypes.STRING,
-      },
       employee: {
         id: this.#primaryKey,
         first_name: DataTypes.STRING,
@@ -22,14 +18,7 @@ class Models {
         dob: DataTypes.DATEONLY,
         salary: DataTypes.FLOAT,
         manager: DataTypes.STRING,
-        department: {
-          type: DataTypes.INTEGER,
-          // allowNull: false,
-          references: {
-            model: "department",
-            key: "id",
-          },
-        },
+        department: DataTypes.STRING,
       },
     };
   }
