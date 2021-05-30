@@ -6,7 +6,7 @@ import {Network} from "./network";
 
 let net=new Network();
 
-export const Menu=()=>{
+export const Menu=(props)=>{
   const [uploadState,setUploadState]=useState({
     status:"ready",
     notification:{}
@@ -93,9 +93,9 @@ export const Menu=()=>{
             <div className="col-9">
               <div className="tab-content" id="v-pills-tabContent">
                 <div className="tab-pane fade show active" id="v-pills-download" role="tabpanel" aria-labelledby="v-pills-download-tab">
-                  <button type="button" className="btn btn-secondary btn-lg btn-block">Data Input Template</button>
-                  <button type="button" className="btn btn-secondary btn-lg btn-block">Current Filter Selection</button>
-                  <button type="button" className="btn btn-secondary btn-lg btn-block">All Data</button>
+                  <button type="button" className="btn btn-secondary btn-lg btn-block" onClick={()=>props.download("template")}>Data Input Template</button>
+                  {/* <button type="button" className="btn btn-secondary btn-lg btn-block" onClick={()=>props.download("current")}>Current Filter Selection</button> */}
+                  <button type="button" className="btn btn-secondary btn-lg btn-block" onClick={()=>props.download("all")}>All Data</button>
                 </div>
                 <div className="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
                   <div className="input-group mb-3">
