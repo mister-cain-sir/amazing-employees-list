@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {MenuItem} from "./menu-item";
 import {Notification} from "./notification";
-import axios from "axios";
 import {Network} from "./network";
 
 let net=new Network();
@@ -70,16 +69,27 @@ export const Menu=(props)=>{
             description:"Something went wrong"
           }
         });
-      window.setTimeout(()=>{
+    });
+  }
+  useEffect(()=>{
+    if(resetState.status=="dataCleared" || uploadState.status=="uploadComplete"){
+      props.dataUpdate();
+      if(resetState.status=="dataCleared")
         setResetState({
           status:"ready",
           notification:{}
         });
-      },3000);
-    });
-  }
+      if(uploadState.status=="uploadComplete"){
+        document.getElementById("data-upload-file-input").value="";
+        setUploadState({
+          status:"ready",
+          notification:{}
+        });
+      }
+    }
+  },[resetState.status,uploadState.status]);
   return (
-    <div className="sticky-top">
+    <div className="col-12">
       <div className="collapse" id="navbarToggleExternalContent">
         <div className="bg-dark p-4">
           <div className="row">
@@ -100,7 +110,7 @@ export const Menu=(props)=>{
                 <div className="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
                   <div className="input-group mb-3">
                     <div className="custom-file">
-                      <input type="file" className="custom-file-input" id="inputGroupFile02" accept=".csv" multiple={false} onInput={(e)=>uploadHandler(e)}/>
+                      <input type="file" className="custom-file-input" id="data-upload-file-input" accept=".csv" multiple={false} onInput={(e)=>uploadHandler(e)}/>
                       <label className="custom-file-label" htmlFor="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
                       <Notification content={uploadState.notification}/>
                     </div>

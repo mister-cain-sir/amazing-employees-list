@@ -7,6 +7,17 @@ export class Network {
     let response=await axios.get("/api/json");
     return response.data;
   }
+  async fetchRequestedData(config){
+    let response;
+    switch(config.type){
+      case "list":
+        response=await axios.get(`/api/json/list/${config.params.count}/${config.params.currentPage}/${(config.params.sortcol)?config.params.sortcol:"employee"}/${(config.params.sort)?config.params.sort:"asc"}`);
+        break;
+      case "search":
+        break;
+    }
+    return response.data;
+  }
   async uploadFile(file){
     let formData = new FormData();
     formData.append("dataupload", file);

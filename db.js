@@ -50,12 +50,10 @@ class DB {
   async defineModels() {
     let models = new Models(this.#connector);
     models = models.getModels();
-    const Department = this.#connector.define("department", models.department, {
-      tableName: "department",
-    });
     const Employee = this.#connector.define("employee", models.employee, {
       tableName: "employee",
     });
+
     return this.#connector.sync();
   }
   connect() {
@@ -79,7 +77,7 @@ class DB {
     return this.#connector.models[modelName].destroy(conditionals);
   }
   _query(modelName, config) {
-    return this.#connector.models[modelName].findAll(config);
+    return this.#connector.models[modelName].findAndCountAll(config);
   }
 }
 

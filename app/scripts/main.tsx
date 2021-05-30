@@ -6,8 +6,14 @@ import {Network} from "./network";
 import "../styles/app.scss";
 
 let network=new Network();
-network.fetchAllData().then((records)=>{
-  console.log(records);
-  
-  ReactDom.render(<App data={records}/>,document.getElementById("main-wrapper"));
+let currentPage=1,
+  resultsPerPage=11;
+network.fetchRequestedData({
+  type:"list",
+  params:{
+    count:resultsPerPage,
+    currentPage:currentPage
+  }
+}).then((records)=>{
+  ReactDom.render(<App data={records.rows} totalRecords={records.count} recordsPerPage={resultsPerPage} currentPage={currentPage}/>,document.getElementById("main-wrapper"));
 });
