@@ -1,0 +1,57 @@
+{
+  "name": "github-api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "develop": "gulp",
+    "build": "gulp build",
+    "test": "jest --updateSnapshot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://cvikramaditya@bitbucket.org/cvikramaditya/github-api.git"
+  },
+  "author": "Vikramaditya Chaudhary <cvikramaditya@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/cvikramaditya/github-api#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/plugin-transform-runtime": "^7.13.15",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.23",
+    "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.3",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.2",
+    "browser-sync": "^2.26.14",
+    "css-loader": "^5.2.4",
+    "gulp": "^4.0.2",
+    "jest": "^26.6.3",
+    "react-test-renderer": "^17.0.2",
+    "sass": "^1.32.12",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.36.2",
+    "webpack-stream": "^6.1.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.6.0",
+    "csv-parse": "^4.15.4",
+    "dayjs": "^1.10.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "jquery": "^3.6.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.2.5",
+    "popper.js": "^1.16.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sequelize": "^6.6.2"
+  }
+}
