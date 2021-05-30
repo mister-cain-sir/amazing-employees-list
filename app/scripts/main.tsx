@@ -7,7 +7,7 @@ import "../styles/app.scss";
 
 let network=new Network();
 let currentPage=1,
-  resultsPerPage=11;
+  resultsPerPage=25;
 network.fetchRequestedData({
   type:"list",
   params:{

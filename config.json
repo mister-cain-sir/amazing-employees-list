@@ -1,6 +1,6 @@
 {
   "database": {
-    "host": "localhost",
+    "host": "mysqldb",
     "port": "3306",
     "dialect": "mysql",
     "username": "root",
