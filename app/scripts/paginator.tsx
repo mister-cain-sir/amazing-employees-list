@@ -5,9 +5,13 @@ export const Paginator=(props)=>{
   const [totalPages,setTotalPages]=useState(props.totalPages);
   const [displayedPages,setDisplayedPages]=useState(props.displayedPages);
   const [recordsPerPage,setRecordsPerPage]=useState(25);
+  const [sortcol,setSortCol]=useState(props.currentSort);
   useEffect(()=>{
     setRecordsPerPage(props.recordsPerPage);
   },[props.recordsPerPage]);
+  useEffect(()=>{
+    setSortCol(props.currentSort);
+  },[props.currentSort]);
   let pageLinksMarkup=[];
   let startPage=currentPage-parseInt(displayedPages/2);
   if(startPage<1)
@@ -24,12 +28,16 @@ export const Paginator=(props)=>{
   }
   
   function pageClickHandler(index){
+    console.log(sortcol.col);
+    
     setCurrentPage(index);
     props.dataUpdate({
       type:"list",
       params:{
         count:recordsPerPage,
-        currentPage:index
+        currentPage:index,
+        sortcol:sortcol.col,
+        sort:sortcol.order
       }
     })
   }

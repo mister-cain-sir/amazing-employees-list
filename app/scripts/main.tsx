@@ -15,5 +15,8 @@ network.fetchRequestedData({
     currentPage:currentPage
   }
 }).then((records)=>{
-  ReactDom.render(<App data={records.rows} totalRecords={records.count} recordsPerPage={resultsPerPage} currentPage={currentPage}/>,document.getElementById("main-wrapper"));
+  ReactDom.render(<App data={records.rows} totalRecords={records.count} recordsPerPage={resultsPerPage} currentPage={currentPage} currentSort={{
+    col:"employee",
+    order:"asc"
+  }}/>,document.getElementById("main-wrapper"));
 });

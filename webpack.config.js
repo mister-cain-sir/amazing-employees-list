@@ -39,6 +39,12 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.(jpe?g|png|gif|ico|woff|woff2)$/,
+        use: {
+          loader: "url-loader",
+        },
+      },
     ],
   },
 };
