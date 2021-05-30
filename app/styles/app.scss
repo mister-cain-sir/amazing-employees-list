@@ -13,7 +13,7 @@ html {
 }
 @font-face {
   font-family: "icomoon";
-  src: url("../fonts/icomoon.woff?ldyyo9") format("woff");
+  src: url("../fonts/icomoon.woff?reyhmn") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -35,6 +35,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-search:before {
+  content: "\e986";
+}
 .icon-sort-alpha-asc:before {
   content: "\ea48";
 }

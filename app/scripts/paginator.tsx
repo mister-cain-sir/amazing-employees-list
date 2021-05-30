@@ -28,7 +28,7 @@ export const Paginator=(props)=>{
   }
   
   function pageClickHandler(index){
-    console.log(sortcol.col);
+    
     
     setCurrentPage(index);
     props.dataUpdate({

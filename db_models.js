@@ -13,8 +13,7 @@ class Models {
     this.#models = {
       employee: {
         id: this.#primaryKey,
-        first_name: DataTypes.STRING,
-        last_name: DataTypes.STRING,
+        name: DataTypes.STRING,
         dob: DataTypes.DATEONLY,
         age: DataTypes.INTEGER,
         salary: DataTypes.FLOAT,

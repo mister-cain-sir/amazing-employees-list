@@ -9,6 +9,7 @@ export const App=(props)=>{
   const [currentPage,setCurrentPage]=useState(props.currentPage);
   const [recordsPerPage,setRecordsPerPage]=useState(props.recordsPerPage);
   const [currentSort,setCurrentSort]=useState(props.currentSort);
+  const [currentSearch,setCurrentSearch]=useState(props.currentSearch);
   let tPages=parseInt(props.totalRecords/recordsPerPage);
   if(tPages*recordsPerPage<props.totalRecords)
     tPages++;
@@ -21,7 +22,7 @@ export const App=(props)=>{
         setData(records.rows);
       });
     else{
-      network.fetchRequestedData(config).then((records)=>{
+      network.fetchRequestedData(config).then((records)=>{        
         setData(records.rows);
       });
     }
@@ -32,12 +33,19 @@ export const App=(props)=>{
       order:sort.currentSortOrder
     });
   }
+  function updateSearch(search){
+    setCurrentSearch(search);
+  }
   useEffect(()=>{
     setData(props.data);
   },[props.data]);
   useEffect(()=>{
     setCurrentSort(props.currentSort);
   },[props.currentSort]);
+  useEffect(()=>{
+    
+    setCurrentSearch(props.currentSearch);
+  },[props.currentSearch]);
   function downloadCSV(downloadType){
     let csv;
     switch(downloadType){
@@ -56,7 +64,7 @@ export const App=(props)=>{
           csv=csv.join('\n');
         }
         else
-          csv="first_name,last_name,dob,salary,manager,department";
+          csv="name,dob,salary,manager,department";
         break;
     }
     
@@ -67,11 +75,22 @@ export const App=(props)=>{
     hiddenElement.download = 'people.csv';
     hiddenElement.click();
   }
+  let page=(
+          <Paginator currentPage={currentPage} totalPages={totalPages} displayedPages={displayedPages} dataUpdate={updateData} recordsPerPage={recordsPerPage}  currentSort={currentSort} currentSearch={currentSearch}/>
+        );
+  for (const columnName in currentSearch) {
+    if (Object.prototype.hasOwnProperty.call(currentSearch, columnName)) {
+      if(currentSearch[columnName]!=""){
+        page=null;
+      }
+    }
+  }
+  
   return (
     <div className="row">
       <Menu download={downloadCSV} dataUpdate={updateData} setData={setData} data={data}/>
-      <Table data={data} currentPage={currentPage} totalPages={totalPages} displayedPages={displayedPages} dataUpdate={updateData} recordsPerPage={recordsPerPage}  currentSort={currentSort} updateSort={updateSorting}/>
-      <Paginator currentPage={currentPage} totalPages={totalPages} displayedPages={displayedPages} dataUpdate={updateData} recordsPerPage={recordsPerPage}  currentSort={currentSort}/>
+      <Table data={data} currentPage={currentPage} totalPages={totalPages} displayedPages={displayedPages} dataUpdate={updateData} recordsPerPage={recordsPerPage}  currentSort={currentSort} currentSearch={currentSearch} updateSort={updateSorting} updateSearch={updateSearch}/>
+      {page}
     </div>
   );
 }

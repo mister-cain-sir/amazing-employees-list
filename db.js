@@ -76,7 +76,25 @@ class DB {
   async _delete(modelName, conditionals) {
     return this.#connector.models[modelName].destroy(conditionals);
   }
-  _query(modelName, config) {
+  _query(modelName, config, search) {
+    // console.log(search);
+    if (search) {
+      // console.log(config);
+      // return {};
+      let where = {};
+      for (const columnName in config.where) {
+        if (Object.hasOwnProperty.call(config.where, columnName)) {
+          const query = config.where[columnName];
+          where[columnName] = sequelize.where(
+            sequelize.fn("LOWER", sequelize.col(columnName)),
+            "LIKE",
+            "%" + query + "%"
+          );
+        }
+      }
+      config.where = where;
+    }
+    // console.log(config);
     return this.#connector.models[modelName].findAndCountAll(config);
   }
 }
