@@ -87,7 +87,7 @@ app.get("/api/json/list/:count?/:page?/:sortcol?/:sort?", (req, res) => {
   let { count, page, sort, sortcol } = req.params;
   let conf = {};
   if (count && count != "all") conf.limit = parseInt(count);
-  if (page && parseInt(page) > 1) conf.offset = parseInt(page) - 1;
+  if (page && parseInt(page) > 1) conf.offset = (parseInt(page) - 1) * count;
   if (sortcol) {
     if (sortcol == "employee") {
       if (sort) {

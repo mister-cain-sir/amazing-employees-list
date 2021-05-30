@@ -2,13 +2,28 @@ import React, { useEffect, useState } from "react";
 import {Table} from "./table";
 import {Menu} from "./menu";
 import {Network} from "./network";
+import {Paginator} from "./paginator";
 let network=new Network();
 export const App=(props)=>{
   const [data,setData]=useState(props.data);
-  function updateData(){
-    network.fetchAllData().then((records)=>{
-      setData(records);
-    });
+  const [currentPage,setCurrentPage]=useState(props.currentPage);
+  const [recordsPerPage,setRecordsPerPage]=useState(props.recordsPerPage);
+  let tPages=parseInt(props.totalRecords/recordsPerPage);
+  if(tPages*recordsPerPage<props.totalRecords)
+    tPages++;
+  const [totalPages,setTotalPages]=useState((tPages<1)?1:tPages);
+  const [displayedPages,setDisplayedPages]=useState(5);
+  
+  function updateData(config){
+    if(!config)
+      network.fetchAllData().then((records)=>{
+        setData(records.rows);
+      });
+    else{
+      network.fetchRequestedData(config).then((records)=>{
+        setData(records.rows);
+      });
+    }
   }
   useEffect(()=>{
     setData(props.data);
@@ -43,9 +58,10 @@ export const App=(props)=>{
     hiddenElement.click();
   }
   return (
-    <div>
+    <div className="row">
       <Menu download={downloadCSV} dataUpdate={updateData} setData={setData} data={data}/>
       <Table data={data}/>
+      <Paginator currentPage={currentPage} totalPages={totalPages} displayedPages={displayedPages} dataUpdate={updateData} recordsPerPage={recordsPerPage}/>
     </div>
   );
 }

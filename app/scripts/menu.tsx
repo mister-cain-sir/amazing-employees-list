@@ -89,7 +89,7 @@ export const Menu=(props)=>{
     }
   },[resetState.status,uploadState.status]);
   return (
-    <div className="sticky-top">
+    <div className="col-12">
       <div className="collapse" id="navbarToggleExternalContent">
         <div className="bg-dark p-4">
           <div className="row">

@@ -77,7 +77,7 @@ class DB {
     return this.#connector.models[modelName].destroy(conditionals);
   }
   _query(modelName, config) {
-    return this.#connector.models[modelName].findAll(config);
+    return this.#connector.models[modelName].findAndCountAll(config);
   }
 }
 
