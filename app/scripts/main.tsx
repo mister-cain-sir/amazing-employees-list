@@ -7,7 +7,5 @@ import "../styles/app.scss";
 
 let network=new Network();
 network.fetchAllData().then((records)=>{
-  console.log(records);
-  
   ReactDom.render(<App data={records}/>,document.getElementById("main-wrapper"));
 });

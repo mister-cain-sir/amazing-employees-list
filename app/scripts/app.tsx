@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import {Table} from "./table";
 import {Menu} from "./menu";
+import {Network} from "./network";
+let network=new Network();
 export const App=(props)=>{
   const [data,setData]=useState(props.data);
-  
+  function updateData(){
+    network.fetchAllData().then((records)=>{
+      setData(records);
+    });
+  }
   useEffect(()=>{
     setData(props.data);
   },[props.data]);
@@ -38,7 +44,7 @@ export const App=(props)=>{
   }
   return (
     <div>
-      <Menu download={downloadCSV}/>
+      <Menu download={downloadCSV} dataUpdate={updateData} setData={setData} data={data}/>
       <Table data={data}/>
     </div>
   );
