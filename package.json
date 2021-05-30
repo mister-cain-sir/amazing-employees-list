@@ -1,8 +1,7 @@
 {
   "name": "github-api",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "develop": "gulp",
     "build": "gulp build",
